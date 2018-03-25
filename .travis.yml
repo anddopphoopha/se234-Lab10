@@ -5,7 +5,9 @@ before_install:
 install: true
 before_script:
 - export DOCKER_HOST="$HOST_NAME"
-script: true
+script:
+  - docker build -t anddopphoopha/htmltest .
+  - docker push anddopphoopha/htmltest
 after_success:
 - docker run -p 8088:80 -d --name htmltest $DOCKER_USERNAME/htmltest:latest
 service: docker
