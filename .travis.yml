@@ -9,7 +9,9 @@ script:
   - docker build -t anddopphoopha/htmltest .
   - docker push anddopphoopha/htmltest
 after_success:
-- docker run -p 8088:80 -d --name htmltest $DOCKER_USERNAME/htmltest:latest
+ - docker stop htmltest
+ - docker rm htmltest
+ - docker run -p 8088:80 -d --name htmltest $DOCKER_USERNAME/htmltest:latest
 service: docker
 env:
   global:
